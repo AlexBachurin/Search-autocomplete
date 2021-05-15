@@ -24,6 +24,7 @@
         overflow-y: auto
         list-style-type: none
         & li
+            display: none
             padding: 8px 12px
             width: 100%
             cursor: default
@@ -41,3 +42,8 @@
         font-size: 20px
         color: #6495ED
         cursor: pointer
+
+.search__autocomplete.active 
+    padding: 10px 8px
+    & li
+        display: block

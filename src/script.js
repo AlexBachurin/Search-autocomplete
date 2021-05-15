@@ -39,14 +39,39 @@ input.addEventListener('input', (e) => {
     if (userInput) {
         //filter user input based on starting word
         arr = suggestions.filter(item => {
-            return item.toLocaleLowerCase().startsWith(userInput);
+            return item.toLocaleLowerCase().startsWith(userInput.toLocaleLowerCase());
         })
         //transform to html, to show in suggestionsBox
         arr = arr.map(item => {
             return item = `<li>${item}</li>`
         })
         console.log(arr);
-        //show result in suggestions box
-        suggestionsBox.innerHTML = `${arr.join('')}`
+        //show suggestions
+        showList(arr);
+        suggestionsBox.classList.add('active')
+    } else {
+        suggestionsBox.classList.remove('active')
     }
 })
+
+// input.addEventListener('keydown', (e) => {
+//     console.log(e.key)
+//     if (e.key === 'Enter') {
+//         const value = e.target.value;
+//         //put value in suggestions
+//         suggestions.push(value);
+//         console.log(suggestions)
+//     }
+// })
+
+function showList(list) {
+    //if we have items in suggestions list show them in list
+    if (list.length) {
+         //show result in suggestions box
+         suggestionsBox.innerHTML = `${list.join('')}`
+    //else show user input
+    } else {
+        let userInput = input.value;
+        suggestionsBox.innerHTML = `<li>${userInput}</li>`
+    }
+}
