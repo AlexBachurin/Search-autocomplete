@@ -49,6 +49,15 @@ input.addEventListener('input', (e) => {
         //show suggestions
         showList(arr);
         suggestionsBox.classList.add('active')
+        //add click events to all list items
+        const listItems = suggestionsBox.querySelectorAll('li');
+        listItems.forEach(item => {
+            item.addEventListener('click', () => {
+                //set input value to value of clicked element
+                input.value = item.textContent;
+                suggestionsBox.classList.remove('active') //hide suggestions box
+            })
+        })
     } else {
         suggestionsBox.classList.remove('active')
     }
@@ -75,3 +84,4 @@ function showList(list) {
         suggestionsBox.innerHTML = `<li>${userInput}</li>`
     }
 }
+
